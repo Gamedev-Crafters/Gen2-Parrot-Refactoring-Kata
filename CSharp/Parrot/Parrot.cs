@@ -25,12 +25,17 @@ namespace Parrot
                 case ParrotTypeEnum.EUROPEAN:
                     return GetBaseSpeed();
                 case ParrotTypeEnum.AFRICAN:
-                    return Math.Max(0, GetBaseSpeed() - GetLoadFactor() * _numberOfCoconuts);
+                    return GetAfricanSpeed();
                 case ParrotTypeEnum.NORWEGIAN_BLUE:
                     return _isNailed ? 0 : GetBaseSpeed(_voltage);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        double GetAfricanSpeed()
+        {
+            return Math.Max(0, GetBaseSpeed() - GetLoadFactor() * _numberOfCoconuts);
         }
 
         private double GetBaseSpeed(double voltage)
@@ -65,6 +70,7 @@ namespace Parrot
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             return value;
         }
     }
